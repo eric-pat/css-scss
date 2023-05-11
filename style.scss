@@ -1,0 +1,67 @@
+@mixin ring($size, $color) {
+  $border-width: $size / 10;
+  $shadow-size: $size / 5;
+  $shadow-color: darken($color, 10%);
+
+  width: $size;
+  height: $size;
+  border: $border-width solid $color;
+  border-radius: 50%;
+  box-shadow: 0 0 $shadow-size $shadow-color;
+}
+
+.my-ring {
+  @include ring(90px, #ff2f00);
+}
+
+.my-ring2 {
+  @include ring(190px, #ffd500);
+}
+
+@mixin ring($size, $color) {
+  $border-width: $size / 10;
+  $shadow-size: $size / 5;
+  $shadow-color: darken($color, 20%);
+
+  width: $size;
+  height: $size;
+  border: $border-width solid $color;
+  border-radius: 50%;
+  box-shadow: 0 0 $shadow-size $shadow-color;
+}
+
+$ring-sizes: 30px 45px 60px 75px 90px 105px;
+$rings-spacing: 30px;
+
+@for $i from 1 through 6 {
+  $ring-size: nth($ring-sizes, $i);
+  $ring-spacing: if($i == 1, 0, $rings-spacing);
+
+  .ring-#{$i} {
+    @include ring($ring-size, #090909);
+    margin-right: -$ring-spacing / 2;
+    margin-left: if($i == 1, 0, -$ring-spacing / 2);
+    z-index: 6 - $i;
+  }
+}
+
+.ring-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+
+
+.d-flex {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  margin: 0 20px;
+  text-align: center;
+  font-size: 80px;
+}
